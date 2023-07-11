@@ -32,11 +32,13 @@ function App() {
       
       {selectedItem && (
         <div>
-          <h2>{selectedItem}</h2>
-          {/* Render the corresponding item based on the selected item name */}
-          {selectedItem === 'Twitter'  }
-          {selectedItem === 'Youtube' }
-          {selectedItem === 'Facebook' }
+          
+          {Item.map((item) => {
+            if (item.name === selectedItem) {
+              return <h2 key={item.id}>{selectedItem}</h2>;
+            }
+            return null;
+          })}
         </div>
       )}
       
