@@ -1,23 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState} from 'react';
+import Tarjeta from './components/Tarjeta';
+import Item from './components/Item';
 
 function App() {
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [selectedItem, setSelectedItem] = useState('');
+
+  const handleButtonClick = (itemName) => {
+    setSelectedItem(itemName);
+  };
+
+  
+ 
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const appStyles = {
+    backgroundColor: isDarkMode ? '#1e1e1e' : '#fff',
+    color: isDarkMode ? '#fff' : '#333',
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={appStyles}>
+      <h1>¡Bienvenidos!</h1>
+      <h3>Contanos, ¿cual es tu plataforma favorita?</h3>
+      
+      {selectedItem && (
+        <div>
+          <h2>{selectedItem}</h2>
+          {/* Render the corresponding item based on the selected item name */}
+          {selectedItem === 'Twitter'  }
+          {selectedItem === 'Youtube' }
+          {selectedItem === 'Facebook' }
+        </div>
+      )}
+      
+
+      <Tarjeta onButtonClick={handleButtonClick} />
+
+      <button onClick={toggleDarkMode}>
+      {isDarkMode ? '☀️' : '🌙'}
+      </button>
+
+
+
     </div>
   );
 }
